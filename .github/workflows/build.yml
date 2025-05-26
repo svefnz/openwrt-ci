@@ -9,10 +9,10 @@ env:
   REPO_BRANCH: master
   FEEDS_CONF: feeds.conf.default
   CONFIG_FILE: .config
-  DIY_P1_SH: before.sh
-  DIY_P2_SH: after.sh
-  UPLOAD_BIN_DIR: true
-  UPLOAD_FIRMWARE: true
+  ADD_FEEDS: feeds.sh
+  CUSTOM_INFO: custom_info.sh
+  UPLOAD_BIN_DIR: false
+  UPLOAD_FIRMWARE: false
   UPLOAD_RELEASE: true
   BURN_IMG_SH: burn_img.sh
   TZ: Asia/Shanghai
@@ -61,9 +61,9 @@ jobs:
     - name: Load custom feeds
       run: |
         [ -e $FEEDS_CONF ] && mv $FEEDS_CONF openwrt/feeds.conf.default
-        chmod +x $DIY_P1_SH
+        chmod +x $ADD_FEEDS
         cd openwrt
-        $GITHUB_WORKSPACE/$DIY_P1_SH
+        $GITHUB_WORKSPACE/$ADD_FEEDS
 
     - name: Update feeds
       run: cd openwrt && ./scripts/feeds update -a
@@ -88,8 +88,169 @@ jobs:
         CONFIG_TARGET_amlogic=y
         CONFIG_TARGET_amlogic_meson8b=y
         CONFIG_TARGET_amlogic_meson8b_DEVICE_thunder-onecloud=y
+        CONFIG_CGROUPFS_MOUNT_KERNEL_CGROUPS=y
+        CONFIG_DOCKER_CGROUP_OPTIONS=y
+        CONFIG_DOCKER_NET_MACVLAN=y
+        CONFIG_DOCKER_OPTIONAL_FEATURES=y
+        CONFIG_DOCKER_STO_EXT4=y
+        CONFIG_KERNEL_ARM_PMU=y
+        CONFIG_KERNEL_CFQ_GROUP_IOSCHED=y
+        CONFIG_KERNEL_CGROUP_DEVICE=y
+        CONFIG_KERNEL_CGROUP_FREEZER=y
+        CONFIG_KERNEL_CGROUP_HUGETLB=y
+        CONFIG_KERNEL_CGROUP_NET_PRIO=y
+        CONFIG_KERNEL_CGROUP_PERF=y
+        CONFIG_KERNEL_HUGETLBFS=y
+        CONFIG_KERNEL_HUGETLB_PAGE=y
+        CONFIG_KERNEL_MEMCG_SWAP_ENABLED=y
+        CONFIG_KERNEL_NET_CLS_CGROUP=y
+        CONFIG_KERNEL_PERF_EVENTS=y
+        CONFIG_KERNEL_TRANSPARENT_HUGEPAGE=y
+        CONFIG_KERNEL_TRANSPARENT_HUGEPAGE_ALWAYS=y
+        CONFIG_NODEJS_ICU_SMALL=y
+        CONFIG_PACKAGE_6in4=y
+        CONFIG_PACKAGE_TAR_BZIP2=y
+        CONFIG_PACKAGE_TAR_GZIP=y
+        CONFIG_PACKAGE_TAR_POSIX_ACL=y
+        CONFIG_PACKAGE_TAR_XATTR=y
+        CONFIG_PACKAGE_TAR_XZ=y
+        CONFIG_PACKAGE_TAR_ZSTD=y
+        CONFIG_PACKAGE_adguardhome=y
+        CONFIG_PACKAGE_alist=y
+        CONFIG_PACKAGE_blockd=y
+        CONFIG_PACKAGE_boost=y
+        CONFIG_PACKAGE_boost-date_time=y
+        CONFIG_PACKAGE_boost-program_options=y
+        CONFIG_PACKAGE_boost-system=y
+        CONFIG_PACKAGE_btrfs-progs=y
+        CONFIG_PACKAGE_bzip2=y
+        CONFIG_PACKAGE_cgroupfs-mount=y
+        CONFIG_PACKAGE_chinadns-ng=y
+        CONFIG_PACKAGE_cloudflared=y
+        CONFIG_PACKAGE_collectd=y
+        CONFIG_PACKAGE_collectd-mod-cpu=y
+        CONFIG_PACKAGE_collectd-mod-interface=y
+        CONFIG_PACKAGE_collectd-mod-iwinfo=y
+        CONFIG_PACKAGE_collectd-mod-load=y
+        CONFIG_PACKAGE_collectd-mod-memory=y
+        CONFIG_PACKAGE_collectd-mod-network=y
+        CONFIG_PACKAGE_collectd-mod-rrdtool=y
+        CONFIG_PACKAGE_containerd=y
+        CONFIG_PACKAGE_coreutils-stty=y
+        CONFIG_PACKAGE_coreutils-timeout=y
+        CONFIG_PACKAGE_cshark=y
+        CONFIG_PACKAGE_docker=y
+        CONFIG_PACKAGE_dockerd=y
+        CONFIG_PACKAGE_hysteria=y
+        CONFIG_PACKAGE_ipt2socks=y
+        CONFIG_PACKAGE_ipv6helper=y
+        CONFIG_PACKAGE_kcptun-client=y
+        CONFIG_PACKAGE_kcptun-config=y
+        CONFIG_PACKAGE_kmod-br-netfilter=y
+        CONFIG_PACKAGE_kmod-crypto-acompress=y
+        CONFIG_PACKAGE_kmod-dummy=y
+        CONFIG_PACKAGE_kmod-fs-autofs4=y
+        CONFIG_PACKAGE_kmod-fs-btrfs=y
+        CONFIG_PACKAGE_kmod-fs-squashfs=y
+        CONFIG_PACKAGE_kmod-ipt-physdev=y
+        CONFIG_PACKAGE_kmod-iptunnel=y
+        CONFIG_PACKAGE_kmod-iptunnel4=y
+        CONFIG_PACKAGE_kmod-lib-crc32c=y
+        CONFIG_PACKAGE_kmod-lib-lzo=y
+        CONFIG_PACKAGE_kmod-lib-raid6=y
+        CONFIG_PACKAGE_kmod-lib-xor=y
+        CONFIG_PACKAGE_kmod-lib-zlib-deflate=y
+        CONFIG_PACKAGE_kmod-lib-zlib-inflate=y
+        CONFIG_PACKAGE_kmod-lib-zstd=y
+        CONFIG_PACKAGE_kmod-mii=y
+        CONFIG_PACKAGE_kmod-nf-ipvs=y
+        CONFIG_PACKAGE_kmod-nls-cp936=y
+        CONFIG_PACKAGE_kmod-sit=y
+        CONFIG_PACKAGE_kmod-usb-ehci=y
+        CONFIG_PACKAGE_kmod-usb-net=y
+        CONFIG_PACKAGE_kmod-usb-net-cdc-ether=y
+        CONFIG_PACKAGE_kmod-usb-net-rndis=y
+        CONFIG_PACKAGE_kmod-usb2=y
+        CONFIG_PACKAGE_kmod-veth=y
+        CONFIG_PACKAGE_libacl=y
+        CONFIG_PACKAGE_libattr=y
+        CONFIG_PACKAGE_libbz2=y
+        CONFIG_PACKAGE_libcap=y
+        CONFIG_PACKAGE_libevent2=y
+        CONFIG_PACKAGE_libltdl=y
+        CONFIG_PACKAGE_liblzma=y
+        CONFIG_PACKAGE_liblzo=y
+        CONFIG_PACKAGE_libminiupnpc=y
+        CONFIG_PACKAGE_libmount=y
+        CONFIG_PACKAGE_libnatpmp=y
+        CONFIG_PACKAGE_libpcap=y
+        CONFIG_PACKAGE_librrd1=y
+        CONFIG_PACKAGE_libseccomp=y
+        CONFIG_PACKAGE_libstdcpp=y
+        CONFIG_PACKAGE_libustream-mbedtls=y
+        CONFIG_PACKAGE_libuv=y
+        CONFIG_PACKAGE_libwebsockets-full=y
+        CONFIG_PACKAGE_libzstd=y
+        CONFIG_PACKAGE_luci-app-adguardhome=y
+        CONFIG_PACKAGE_luci-app-alist=y
+        CONFIG_PACKAGE_luci-app-cloudflared=y
+        CONFIG_PACKAGE_luci-app-cshark=y
+        CONFIG_PACKAGE_luci-app-dockerman=y
+        CONFIG_PACKAGE_luci-app-smartdns=y
+        CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_ChinaDNS_NG=y
+        CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Hysteria=y
+        CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_IPT2Socks=y
+        CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Kcptun=y
+        CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_NaiveProxy=y
+        CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Redsocks2=y
+        CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Shadow_TLS=y
+        CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Shadowsocks_V2ray_Plugin=y
+        CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Trojan=y
+        CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Tuic_Client=y
+        CONFIG_PACKAGE_luci-app-statistics=y
+        CONFIG_PACKAGE_luci-app-store=y
+        CONFIG_PACKAGE_luci-app-unblockneteasemusic=y
+        CONFIG_PACKAGE_luci-app-zerotier=y
+        CONFIG_PACKAGE_luci-i18n-adguardhome-zh-cn=y
+        CONFIG_PACKAGE_luci-i18n-alist-zh-cn=y
+        CONFIG_PACKAGE_luci-i18n-cloudflared-zh-cn=y
+        CONFIG_PACKAGE_luci-i18n-cshark-zh-cn=y
+        CONFIG_PACKAGE_luci-i18n-dockerman-zh-cn=y
+        CONFIG_PACKAGE_luci-i18n-smartdns-zh-cn=y
+        CONFIG_PACKAGE_luci-i18n-statistics-zh-cn=y
+        CONFIG_PACKAGE_luci-i18n-zerotier-zh-cn=y
+        CONFIG_PACKAGE_luci-lib-docker=y
+        CONFIG_PACKAGE_luci-lib-taskd=y
+        CONFIG_PACKAGE_luci-lib-xterm=y
+        CONFIG_PACKAGE_mount-utils=y
+        CONFIG_PACKAGE_naiveproxy=y
+        CONFIG_PACKAGE_netdata=y
+        CONFIG_PACKAGE_node=y
+        CONFIG_PACKAGE_openssh-sftp-server=y
+        CONFIG_PACKAGE_redsocks2=y
+        CONFIG_PACKAGE_rrdtool1=y
+        CONFIG_PACKAGE_runc=y
+        CONFIG_PACKAGE_script-utils=y
+        CONFIG_PACKAGE_shadow-tls=y
+        CONFIG_PACKAGE_smartdns=y
+        CONFIG_PACKAGE_tar=y
+        CONFIG_PACKAGE_taskd=y
+        CONFIG_PACKAGE_tini=y
+        CONFIG_PACKAGE_trojan=y
+        CONFIG_PACKAGE_ttyd=y
+        CONFIG_PACKAGE_tuic-client=y
+        CONFIG_PACKAGE_v2ray-plugin=y
+        CONFIG_PACKAGE_xz=y
+        CONFIG_PACKAGE_xz-utils=y
+        CONFIG_PACKAGE_zerotier=y
         CONFIG_TARGET_KERNEL_PARTSIZE=32
         CONFIG_TARGET_ROOTFS_PARTSIZE=600
+        # CONFIG_TARGET_ROOTFS_SQUASHFS is not set
+        CONFIG_ZSTD_OPTIMIZE_O3=y
+        CONFIG_boost-compile-visibility-hidden=y
+        CONFIG_boost-runtime-shared=y
+        CONFIG_boost-static-and-shared-libs=y
+        CONFIG_boost-variant-release=y
         #
         # ========================固件定制部分结束========================
         #
