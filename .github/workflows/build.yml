@@ -73,17 +73,34 @@ jobs:
 
     - name: Load custom configuration
       run: |
-        [ -e files ] && mv files openwrt/files
-        [ -e $CONFIG_FILE ] && mv $CONFIG_FILE openwrt/.config
-        chmod +x $DIY_P2_SH
+        #[ -e files ] && mv files openwrt/files
+        #[ -e $CONFIG_FILE ] && mv $CONFIG_FILE openwrt/.config
+        #chmod +x $DIY_P2_SH
+        #cd openwrt
+        #$GITHUB_WORKSPACE/$DIY_P2_SH
         cd openwrt
-        $GITHUB_WORKSPACE/$DIY_P2_SH
+        rm -f ./.config*
+        touch ./.config
+        cat >> .config <<EOF
+        #
+        # ========================固件定制部分========================
+        #
+        CONFIG_TARGET_amlogic=y
+        CONFIG_TARGET_amlogic_meson8b=y
+        CONFIG_TARGET_amlogic_meson8b_DEVICE_thunder-onecloud=y
+        CONFIG_TARGET_KERNEL_PARTSIZE=32
+        CONFIG_TARGET_ROOTFS_PARTSIZE=600
+        #
+        # ========================固件定制部分结束========================
+        #
+        EOF
+        sed -i 's/^[ \t]*//g' ./.config
+        make defconfig
 
     - name: Download package
       id: package
       run: |
         cd openwrt
-        make defconfig
         make download -j8
         find dl -size -1024c -exec ls -l {} \;
         find dl -size -1024c -exec rm -f {} \;
