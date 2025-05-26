@@ -11,8 +11,8 @@ env:
   CONFIG_FILE: .config
   ADD_FEEDS: feeds.sh
   CUSTOM_INFO: custom_info.sh
-  UPLOAD_BIN_DIR: false
-  UPLOAD_FIRMWARE: false
+  UPLOAD_BIN_DIR: true
+  UPLOAD_FIRMWARE: true
   UPLOAD_RELEASE: true
   BURN_IMG_SH: burn_img.sh
   TZ: Asia/Shanghai
