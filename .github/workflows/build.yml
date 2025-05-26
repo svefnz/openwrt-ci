@@ -117,6 +117,7 @@ jobs:
         CONFIG_PACKAGE_TAR_ZSTD=y
         CONFIG_PACKAGE_adguardhome=y
         CONFIG_PACKAGE_alist=y
+        CONFIG_PACKAGE_bash=y
         CONFIG_PACKAGE_blockd=y
         CONFIG_PACKAGE_boost=y
         CONFIG_PACKAGE_boost-date_time=y
@@ -184,6 +185,7 @@ jobs:
         CONFIG_PACKAGE_libmount=y
         CONFIG_PACKAGE_libnatpmp=y
         CONFIG_PACKAGE_libpcap=y
+        CONFIG_PACKAGE_libreadline=y
         CONFIG_PACKAGE_librrd1=y
         CONFIG_PACKAGE_libseccomp=y
         CONFIG_PACKAGE_libstdcpp=y
