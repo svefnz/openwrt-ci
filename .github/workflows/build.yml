@@ -117,8 +117,9 @@ jobs:
         CONFIG_PACKAGE_TAR_ZSTD=y
         CONFIG_PACKAGE_adguardhome=y
         CONFIG_PACKAGE_alist=y
+        # CONFIG_PACKAGE_automount is not set
         CONFIG_PACKAGE_bash=y
-        CONFIG_PACKAGE_blockd=y
+        # CONFIG_PACKAGE_block-mount is not set
         CONFIG_PACKAGE_boost=y
         CONFIG_PACKAGE_boost-date_time=y
         CONFIG_PACKAGE_boost-program_options=y
@@ -254,6 +255,18 @@ jobs:
         CONFIG_boost-runtime-shared=y
         CONFIG_boost-static-and-shared-libs=y
         CONFIG_boost-variant-release=y
+        CONFIG_PACKAGE_kmod-fs-exfat=y
+        CONFIG_PACKAGE_kmod-fs-ext4=y
+        CONFIG_PACKAGE_kmod-fs-ntfs3=y
+        CONFIG_PACKAGE_kmod-fs-vfat=y
+        CONFIG_PACKAGE_kmod-lib-crc16=y
+        CONFIG_PACKAGE_kmod-nls-cp437=y
+        CONFIG_PACKAGE_kmod-nls-iso8859-1=y
+        CONFIG_PACKAGE_kmod-nls-utf8=y
+        CONFIG_PACKAGE_kmod-scsi-core=y
+        CONFIG_PACKAGE_kmod-usb-storage=y
+        CONFIG_PACKAGE_kmod-usb-storage-extras=y
+        CONFIG_PACKAGE_kmod-usb-storage-uas=y
         #
         # ========================固件定制部分结束========================
         #
