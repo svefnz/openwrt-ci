@@ -221,6 +221,7 @@ jobs:
         CONFIG_PACKAGE_libseccomp=y
         CONFIG_PACKAGE_libstdcpp=y
         CONFIG_PACKAGE_libustream-mbedtls=y
+        # CONFIG_PACKAGE_libustream-openssl is not set
         CONFIG_PACKAGE_libuv=y
         CONFIG_PACKAGE_libwebsockets-full=y
         CONFIG_PACKAGE_libyaml=y
